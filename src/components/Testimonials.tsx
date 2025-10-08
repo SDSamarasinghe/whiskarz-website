@@ -6,7 +6,7 @@ const testimonials = [
     name: "Sarah Johnson",
     pet: "Golden Retriever - Max",
     rating: 5,
-    text: "PawCare Toronto is amazing! Our sitter sent daily photos and Max was so happy. We'll definitely book again for our next trip.",
+    text: "Whiskarz is amazing! Our sitter sent daily photos and Max was so happy. We'll definitely book again for our next trip.",
   },
   {
     name: "Michael Chen",
@@ -18,7 +18,7 @@ const testimonials = [
     name: "Emily Rodriguez",
     pet: "Rabbit - Clover",
     rating: 5,
-    text: "Finding someone who knows rabbit care is hard. PawCare's specialized sitters gave Clover excellent care. Highly recommend!",
+    text: "Finding someone who knows rabbit care is hard. Whiskarz's specialized sitters gave Clover excellent care. Highly recommend!",
   },
 ];
 

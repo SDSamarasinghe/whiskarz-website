@@ -15,7 +15,7 @@ const Footer = () => {
                 <PawPrint className="w-6 h-6 text-primary-foreground" />
               </div>
               <span className="text-lg font-heading font-bold text-foreground">
-                PawCare Toronto
+                Whiskarz
               </span>
             </div>
             <p className="text-muted-foreground text-sm">
@@ -76,7 +76,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start space-x-2 text-muted-foreground text-sm">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
-                <span>hello@pawcareto.com</span>
+                <span>hello@whiskarz.com</span>
               </li>
             </ul>
           </div>
@@ -84,7 +84,7 @@ const Footer = () => {
 
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-muted-foreground text-sm">
-            © {currentYear} PawCare Toronto. All rights reserved. | Fully Insured & Bonded
+            © {currentYear} Whiskarz. All rights reserved. | Fully Insured & Bonded
           </p>
         </div>
       </div>

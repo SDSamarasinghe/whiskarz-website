@@ -23,7 +23,7 @@ const Navbar = () => {
               <PawPrint className="w-6 h-6 text-primary-foreground" />
             </div>
             <span className="text-xl font-heading font-bold text-foreground">
-              PawCare <span className="text-primary">Toronto</span>
+              Whiskarz
             </span>
           </Link>
 

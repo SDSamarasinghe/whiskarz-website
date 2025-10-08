@@ -77,7 +77,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                      <p className="text-muted-foreground">hello@pawcareto.com</p>
+                      <p className="text-muted-foreground">hello@whiskarz.com</p>
                       <p className="text-sm text-muted-foreground mt-1">24-48 hour response</p>
                     </div>
                   </div>

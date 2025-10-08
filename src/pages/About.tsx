@@ -35,7 +35,7 @@ const About = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto animate-fade-in-up">
             <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6">
-              About <span className="text-gradient">PawCare Toronto</span>
+              About <span className="text-gradient">Whiskarz</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
               We're more than just a pet sitting service – we're a community of passionate pet lovers dedicated to providing the highest quality care for Toronto's furry, feathered, and scaled friends.
@@ -53,7 +53,7 @@ const About = () => {
             </h2>
             <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
               <p>
-                PawCare Toronto was founded in 2020 by a group of pet enthusiasts who saw a need for reliable, professional pet sitting services that treat every animal with the love and care they deserve.
+                Whiskarz was founded in 2020 by a group of pet enthusiasts who saw a need for reliable, professional pet sitting services that treat every animal with the love and care they deserve.
               </p>
               <p>
                 As pet parents ourselves, we understand the anxiety of leaving your beloved companions. That's why we created a service built on trust, transparency, and genuine care for animals of all types.
