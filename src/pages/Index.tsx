@@ -5,6 +5,7 @@ import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import FloatingCTA from "@/components/FloatingCTA";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <Testimonials />
       <CTASection />
       <Footer />
+      <FloatingCTA />
     </div>
   );
 };
