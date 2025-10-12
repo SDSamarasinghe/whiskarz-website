@@ -197,7 +197,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                      <p className="text-muted-foreground">(416) 555-PETS</p>
+                      <p className="text-muted-foreground">+1 (647) 548-8025</p>
                       <p className="text-sm text-muted-foreground mt-1">Mon-Sun, 8am-8pm</p>
                     </div>
                   </div>
@@ -227,8 +227,9 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Location</h3>
-                      <p className="text-muted-foreground">Serving all of Toronto</p>
-                      <p className="text-sm text-muted-foreground mt-1">& surrounding areas</p>
+                      <p className="text-muted-foreground">2191 Yonge Street</p>
+                      <p className="text-muted-foreground">Toronto, ON M4S 3H8</p>
+                      <p className="text-sm text-muted-foreground mt-1">Serving Oshawa, Ajax, Bowmanville & more</p>
                     </div>
                   </div>
                 </CardContent>
