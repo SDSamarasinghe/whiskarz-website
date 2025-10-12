@@ -14,6 +14,7 @@ const serviceLocations = [
   { name: "Courtice", lat: 43.9128, lng: -78.7897 },
   { name: "Newcastle", lat: 43.9170, lng: -78.5897 },
 ];
+// keep
 
 const PricingSection = () => {
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
