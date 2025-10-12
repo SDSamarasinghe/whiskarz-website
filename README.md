@@ -32,9 +32,36 @@ cd <YOUR_PROJECT_NAME>
 # Step 3: Install the necessary dependencies.
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Set up environment variables
+# Copy .env.example to .env and add your Google Maps API key
+cp .env.example .env
+# Edit .env and replace 'your_api_key_here' with your actual Google Maps API key
+
+# Step 5: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
+
+## Google Maps API Setup
+
+This project uses Google Maps for the interactive service area map. To make it work:
+
+1. **Get a Google Maps API Key:**
+   - Go to [Google Cloud Console](https://console.cloud.google.com/google/maps-apis/)
+   - Create a new project or select an existing one
+   - Enable the **Maps JavaScript API**
+   - Go to **Credentials** and create an API key
+   - Restrict your API key to your domain for security
+
+2. **Add the API key to your project:**
+   - Copy `.env.example` to `.env`
+   - Replace `your_api_key_here` with your actual API key:
+     ```
+     VITE_GOOGLE_MAPS_API_KEY=your_actual_api_key_here
+     ```
+
+3. **Restart the dev server** if it's already running
+
+**Note:** The `.env` file is gitignored to keep your API key secure.
 
 **Edit a file directly in GitHub**
 
