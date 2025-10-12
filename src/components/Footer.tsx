@@ -142,7 +142,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-white/90 text-base leading-relaxed">
-              Professional, trusted pet sitting services for all your furry (and not-so-furry) friends in Toronto. Your pets deserve the best care.
+              Professional, trusted pet sitting services in Oshawa, Ajax, Bowmanville, and surrounding areas. Your pets deserve the best care.
             </p>
             
             {/* Trust Badges */}
@@ -299,8 +299,8 @@ const Footer = () => {
               <h4 className="font-semibold text-white text-lg mb-4">Contact Us</h4>
               <ul className="space-y-3">
                 {[
-                  { icon: MapPin, text: "Toronto, Ontario", color: "from-accent to-primary" },
-                  { icon: Phone, text: "(416) 555-PETS", color: "from-primary to-secondary" },
+                  { icon: MapPin, text: "2191 Yonge Street, Toronto, ON M4S 3H8", color: "from-accent to-primary" },
+                  { icon: Phone, text: "+1 (647) 548-8025", color: "from-primary to-secondary" },
                   { icon: Mail, text: "hello@whiskarz.com", color: "from-secondary to-accent" }
                 ].map((contact, index) => {
                   const Icon = contact.icon;
@@ -311,12 +311,12 @@ const Footer = () => {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: 0.1 * index }}
-                      className="flex items-start space-x-3 text-white/90 text-base group cursor-pointer hover:text-accent transition-colors"
+                      className="flex items-start space-x-3 text-white/90 text-sm group cursor-pointer hover:text-accent transition-colors"
                     >
                       <div className={`w-8 h-8 bg-gradient-to-br ${contact.color} rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 shadow-md`}>
                         <Icon className="w-4 h-4 text-white" />
                       </div>
-                      <span className="font-medium">{contact.text}</span>
+                      <span className="font-medium leading-relaxed">{contact.text}</span>
                     </motion.li>
                   );
                 })}
@@ -355,7 +355,7 @@ const Footer = () => {
               >
                 <Heart className="w-5 h-5 text-accent fill-accent" />
               </motion.div>
-              <span className="text-white/90 text-sm font-medium">for pets in Toronto</span>
+              <span className="text-white/90 text-sm font-medium">for pets in Oshawa, Ajax, Bowmanville & more</span>
             </motion.div>
           </div>
         </motion.div>
