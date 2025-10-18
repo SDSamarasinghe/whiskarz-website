@@ -142,7 +142,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-white/90 text-base leading-relaxed">
-              Professional, trusted pet sitting services in Oshawa, Ajax, Bowmanville, and surrounding areas. Your pets deserve the best care.
+              Professional, trusted pet sitting services in Toronto, North York, Scarborough, Markham, Richmond Hill, and surrounding areas. Your pets deserve the best care.
             </p>
             
             {/* Trust Badges */}
@@ -355,7 +355,7 @@ const Footer = () => {
               >
                 <Heart className="w-5 h-5 text-accent fill-accent" />
               </motion.div>
-              <span className="text-white/90 text-sm font-medium">for pets in Oshawa, Ajax, Bowmanville & more</span>
+              <span className="text-white/90 text-sm font-medium">for pets in Toronto, GTA & Durham Region</span>
             </motion.div>
           </div>
         </motion.div>
