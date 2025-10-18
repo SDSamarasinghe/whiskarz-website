@@ -3,18 +3,25 @@ import { Check, Clock, Calendar, Sparkles, MapPin } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
-import InteractiveMap from "./InteractiveMap";
+// import InteractiveMap from "./InteractiveMap";
 
 // Service area coordinates (latitude, longitude)
 const serviceLocations = [
-  { name: "Oshawa", lat: 43.8971, lng: -78.8658 },
-  { name: "Ajax", lat: 43.8509, lng: -79.0204 },
-  { name: "Bowmanville", lat: 43.9128, lng: -78.6882 },
+  { name: "Toronto", lat: 43.6532, lng: -79.3832 },
+  { name: "The Beaches", lat: 43.6677, lng: -79.2941 },
+  { name: "Bayview", lat: 43.7615, lng: -79.3892 },
+  { name: "North York", lat: 43.7615, lng: -79.4111 },
+  { name: "Scarborough", lat: 43.7731, lng: -79.2578 },
+  { name: "Markham", lat: 43.8561, lng: -79.3370 },
+  { name: "Pickering", lat: 43.8384, lng: -79.0868 },
+  { name: "Finch", lat: 43.7806, lng: -79.4163 },
   { name: "Whitby", lat: 43.8975, lng: -78.9429 },
-  { name: "Courtice", lat: 43.9128, lng: -78.7897 },
-  { name: "Newcastle", lat: 43.9170, lng: -78.5897 },
+  { name: "Richmond Hill", lat: 43.8828, lng: -79.4403 },
+  { name: "Ajax", lat: 43.8509, lng: -79.0204 },
+  { name: "Oshawa", lat: 43.8971, lng: -78.8658 },
+  { name: "Etobicoke", lat: 43.6205, lng: -79.5132 },
+  { name: "Thornhill", lat: 43.8150, lng: -79.4233 },
 ];
-// keep
 
 const PricingSection = () => {
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
@@ -224,13 +231,142 @@ const PricingSection = () => {
               <div className="max-w-6xl mx-auto">
                 <Card className="border-2 border-accent/30 shadow-2xl overflow-hidden bg-white dark:bg-card">
                   <CardContent className="p-0">
-                    {/* Interactive Google Map */}
+                    {/* Custom Designed Map */}
                     <div className="relative w-full" style={{ height: '600px' }}>
-                      <InteractiveMap 
+                      {/* Google Map - Commented Out */}
+                      {/* <InteractiveMap 
                         locations={serviceLocations}
                         selectedLocation={selectedLocation}
                         onMarkerClick={setSelectedLocation}
-                      />
+                      /> */}
+
+                      {/* Custom SVG Map Design */}
+                      <div className="w-full h-full bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-900 relative overflow-hidden">
+                        {/* Decorative Grid Lines */}
+                        <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+                          <defs>
+                            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-primary"/>
+                            </pattern>
+                          </defs>
+                          <rect width="100%" height="100%" fill="url(#grid)" />
+                        </svg>
+
+                        {/* Decorative Circles for Map Style */}
+                        <div className="absolute inset-0">
+                          <motion.div
+                            animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+                            transition={{ duration: 4, repeat: Infinity }}
+                            className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl"
+                          />
+                          <motion.div
+                            animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
+                            transition={{ duration: 5, repeat: Infinity }}
+                            className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
+                          />
+                        </div>
+
+                        {/* Location Markers - Positioned across the map */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="relative w-full h-full max-w-4xl max-h-[500px]">
+                            {serviceLocations.map((location, index) => {
+                              // Custom positioning for each city (artistic placement)
+                              const positions = [
+                                { top: '45%', left: '40%' }, // Toronto (center)
+                                { top: '42%', left: '55%' }, // The Beaches
+                                { top: '35%', left: '42%' }, // Bayview
+                                { top: '28%', left: '38%' }, // North York
+                                { top: '30%', left: '60%' }, // Scarborough
+                                { top: '20%', left: '50%' }, // Markham
+                                { top: '35%', left: '75%' }, // Pickering
+                                { top: '25%', left: '35%' }, // Finch
+                                { top: '45%', left: '82%' }, // Whitby
+                                { top: '18%', left: '40%' }, // Richmond Hill
+                                { top: '40%', left: '78%' }, // Ajax
+                                { top: '48%', left: '88%' }, // Oshawa
+                                { top: '52%', left: '22%' }, // Etobicoke
+                                { top: '22%', left: '42%' }, // Thornhill
+                              ];
+
+                              const position = positions[index] || { top: '50%', left: '50%' };
+                              const isSelected = selectedLocation?.name === location.name;
+                              const isHovered = hoveredLocation === location.name;
+
+                              return (
+                                <motion.div
+                                  key={location.name}
+                                  className="absolute cursor-pointer"
+                                  style={position}
+                                  initial={{ opacity: 0, scale: 0 }}
+                                  animate={{ 
+                                    opacity: 1, 
+                                    scale: isSelected ? 1.4 : isHovered ? 1.2 : 1,
+                                  }}
+                                  transition={{ 
+                                    duration: 0.3,
+                                    delay: index * 0.05,
+                                  }}
+                                  whileHover={{ scale: 1.3, zIndex: 50 }}
+                                  onClick={() => setSelectedLocation(location)}
+                                  onMouseEnter={() => setHoveredLocation(location.name)}
+                                  onMouseLeave={() => setHoveredLocation(null)}
+                                >
+                                  {/* Marker Pin */}
+                                  <div className="relative group">
+                                    {/* Pulse Effect */}
+                                    {(isSelected || isHovered) && (
+                                      <motion.div
+                                        className="absolute -inset-4 bg-red-500/30 rounded-full"
+                                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                                        transition={{ duration: 2, repeat: Infinity }}
+                                      />
+                                    )}
+                                    
+                                    {/* Pin Icon */}
+                                    <div className={`relative w-10 h-10 ${isSelected || isHovered ? 'w-12 h-12' : ''} transition-all duration-300`}>
+                                      <div className="absolute inset-0 bg-red-500 rounded-full shadow-xl flex items-center justify-center border-4 border-white">
+                                        <MapPin className="w-5 h-5 text-white" />
+                                      </div>
+                                    </div>
+
+                                    {/* Location Label */}
+                                    <motion.div
+                                      initial={{ opacity: 0, y: 5 }}
+                                      animate={{ opacity: isSelected || isHovered ? 1 : 0, y: isSelected || isHovered ? 0 : 5 }}
+                                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white dark:bg-gray-800 px-3 py-1.5 rounded-lg shadow-xl border-2 border-accent/30 whitespace-nowrap z-50"
+                                    >
+                                      <span className="text-xs font-bold text-foreground">{location.name}</span>
+                                      <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white dark:bg-gray-800 border-t-2 border-l-2 border-accent/30 rotate-45" />
+                                    </motion.div>
+
+                                    {/* Connecting Lines (decorative) */}
+                                    {isSelected && index < serviceLocations.length - 1 && (
+                                      <motion.div
+                                        initial={{ pathLength: 0 }}
+                                        animate={{ pathLength: 1 }}
+                                        className="absolute top-0 left-0"
+                                      />
+                                    )}
+                                  </div>
+                                </motion.div>
+                              );
+                            })}
+
+                            {/* Center Label */}
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: 0.8 }}
+                              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                            >
+                              <div className="text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-md px-6 py-3 rounded-2xl shadow-2xl border-2 border-accent/40">
+                                <p className="text-2xl font-bold text-primary mb-1">Greater Toronto Area</p>
+                                <p className="text-sm text-muted-foreground">& Durham Region</p>
+                              </div>
+                            </motion.div>
+                          </div>
+                        </div>
+                      </div>
 
                       {/* Overlay Legend */}
                       <div className="absolute top-4 left-4 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-xl shadow-2xl border-2 border-accent/30 p-4 z-10 max-w-xs">
@@ -273,8 +409,8 @@ const PricingSection = () => {
                             <MapPin className="w-6 h-6 text-white" />
                           </div>
                           <div>
-                            <p className="font-bold text-sm mb-1">Serving 6 Locations</p>
-                            <p className="text-xs opacity-90">Durham Region & Surrounding Areas</p>
+                            <p className="font-bold text-sm mb-1">Serving 14 Locations</p>
+                            <p className="text-xs opacity-90">Greater Toronto Area & Durham Region</p>
                           </div>
                         </div>
                       </div>
