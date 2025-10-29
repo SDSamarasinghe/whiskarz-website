@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { Check, Clock, Calendar, Sparkles, MapPin } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { MapPin } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 // import InteractiveMap from "./InteractiveMap";
 
@@ -26,51 +25,6 @@ const serviceLocations = [
 const PricingSection = () => {
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<typeof serviceLocations[0] | null>(null);
-  
-  // Google Maps URL with all service locations marked
-  const googleMapsEmbedUrl = `https://www.google.com/maps/embed/v1/view?key=YOUR_API_KEY&center=43.8971,-78.8658&zoom=10&maptype=roadmap`;
-  
-  // Alternative: Use multiple markers URL
-  const googleMapsUrl = "https://www.google.com/maps/d/embed?mid=1your-custom-map-id&ehbc=2E312F";
-
-  const pricingPlans = [
-    {
-      duration: "30 Minutes",
-      icon: Clock,
-      regular: "$28",
-      holiday: "$35",
-      description: "Perfect for quick check-ins and feeding",
-      popular: false,
-      gradient: "from-primary to-accent",
-    },
-    {
-      duration: "45 Minutes",
-      icon: Clock,
-      regular: "$32",
-      holiday: "$40",
-      description: "Ideal for walks and playtime",
-      popular: true,
-      gradient: "from-accent to-secondary",
-    },
-    {
-      duration: "1 Hour",
-      icon: Clock,
-      regular: "$35",
-      holiday: "$46",
-      description: "Extended care and attention",
-      popular: false,
-      gradient: "from-secondary to-primary",
-    },
-  ];
-
-  const serviceAreas = [
-    "Oshawa",
-    "Ajax", 
-    "Bowmanville",
-    "Whitby",
-    "Courtice",
-    "Newcastle",
-  ];
 
   return (
     <section className="py-20 relative overflow-hidden bg-gradient-to-br from-background via-muted/20 to-background">
@@ -88,129 +42,13 @@ const PricingSection = () => {
       />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center space-x-2 bg-gradient-to-r from-accent/20 to-primary/20 backdrop-blur-sm border-2 border-accent/30 text-primary px-6 py-3 rounded-full mb-8 shadow-lg"
-          >
-            <Sparkles className="w-5 h-5 text-accent animate-pulse-soft" />
-            <span className="text-sm font-bold">Transparent Pricing</span>
-          </motion.div>
-
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
-            Simple, <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">Affordable</span> Pricing
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Choose the perfect duration for your pet's care needs. All prices in CAD.
-          </p>
-        </motion.div>
-
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-          {pricingPlans.map((plan, index) => {
-            const Icon = plan.icon;
-            return (
-              <motion.div
-                key={plan.duration}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-              >
-                <Card className={`relative h-full overflow-hidden border-2 ${plan.popular ? 'border-accent/60 shadow-xl' : 'border-border/30'} hover:border-accent/50 transition-all duration-500 bg-white dark:bg-card shadow-lg hover:shadow-2xl`}>
-                  {plan.popular && (
-                    <div className="absolute top-0 left-0 right-0">
-                      <div className="bg-gradient-to-r from-accent to-secondary text-white text-center py-2 text-sm font-bold">
-                        MOST POPULAR
-                      </div>
-                    </div>
-                  )}
-                  
-                  <CardHeader className={`${plan.popular ? 'pt-16' : 'pt-8'} pb-6`}>
-                    <div className="flex justify-center mb-6">
-                      <div className={`w-20 h-20 bg-gradient-to-br ${plan.gradient} rounded-2xl flex items-center justify-center shadow-lg`}>
-                        <Icon className="w-10 h-10 text-white" />
-                      </div>
-                    </div>
-                    
-                    <CardTitle className="text-2xl font-bold text-center text-foreground mb-2">
-                      {plan.duration}
-                    </CardTitle>
-                    <p className="text-sm text-muted-foreground text-center">
-                      {plan.description}
-                    </p>
-                  </CardHeader>
-
-                  <CardContent className="space-y-6 pb-8">
-                    {/* Regular Days */}
-                    <div className="text-center">
-                      <div className="mb-2">
-                        <Badge variant="outline" className="text-xs border-primary/30 text-primary">
-                          Regular Days
-                        </Badge>
-                      </div>
-                      <div className="flex items-baseline justify-center space-x-2">
-                        <span className="text-4xl font-bold text-foreground">{plan.regular}</span>
-                        <span className="text-sm text-muted-foreground">CAD</span>
-                      </div>
-                    </div>
-
-                    <div className="border-t border-border/30 pt-4"></div>
-
-                    {/* Holidays */}
-                    <div className="text-center">
-                      <div className="mb-2">
-                        <Badge variant="outline" className="text-xs border-accent/50 text-accent">
-                          <Calendar className="w-3 h-3 mr-1" />
-                          Holidays
-                        </Badge>
-                      </div>
-                      <div className="flex items-baseline justify-center space-x-2">
-                        <span className="text-4xl font-bold text-accent">{plan.holiday}</span>
-                        <span className="text-sm text-muted-foreground">CAD</span>
-                      </div>
-                    </div>
-
-                    {/* Features */}
-                    <div className="pt-4 space-y-3">
-                      {[
-                        "Professional care",
-                        "Photo updates",
-                        "Fully insured",
-                      ].map((feature, idx) => (
-                        <div key={idx} className="flex items-center space-x-2">
-                          <div className={`w-5 h-5 bg-gradient-to-br ${plan.gradient} rounded-full flex items-center justify-center flex-shrink-0`}>
-                            <Check className="w-3 h-3 text-white" />
-                          </div>
-                          <span className="text-sm text-muted-foreground">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
-        </div>
-
         {/* Interactive Map Section - Full Width */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-20 -mx-4 sm:-mx-6 lg:-mx-8"
+          transition={{ duration: 0.6 }}
+          className="-mx-4 sm:-mx-6 lg:-mx-8"
         >
           <div className="bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 py-16">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
