@@ -203,7 +203,7 @@ const PSICertification = () => {
                 <div>
                   <p className="font-bold text-foreground text-lg mb-1">Trusted by 500+ Families</p>
                   <p className="text-sm text-muted-foreground">
-                    Serving Oshawa, Ajax, Bowmanville & surrounding areas with certified excellence since 2020
+                    Serving Toronto, GTA & Durham Region with certified excellence since 2020
                   </p>
                 </div>
               </div>
