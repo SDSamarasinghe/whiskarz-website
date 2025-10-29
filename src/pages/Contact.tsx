@@ -229,7 +229,7 @@ const Contact = () => {
                       <h3 className="font-semibold text-foreground mb-1">Location</h3>
                       <p className="text-muted-foreground">2191 Yonge Street</p>
                       <p className="text-muted-foreground">Toronto, ON M4S 3H8</p>
-                      <p className="text-sm text-muted-foreground mt-1">Serving Oshawa, Ajax, Bowmanville & more</p>
+                      <p className="text-sm text-muted-foreground mt-1">Serving Toronto, GTA & Durham Region</p>
                     </div>
                   </div>
                 </CardContent>
