@@ -63,7 +63,7 @@ const Hero = () => {
         <motion.div className="max-w-4xl">
           <motion.div variants={badgeVariants} className="mb-8">
             <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm text-white px-5 py-2.5 rounded-full border border-white/30 shadow-lg">
-              <span className="text-sm font-semibold">Trusted by 500+ Happy Pet Families in Oshawa, Ajax & Bowmanville</span>
+              <span className="text-sm font-semibold">Trusted by 500+ Happy Pet Families in Toronto, GTA & Durham Region</span>
             </div>
           </motion.div>
 
@@ -79,7 +79,7 @@ const Hero = () => {
             className="text-xl md:text-2xl text-white/95 mb-10 leading-relaxed max-w-2xl"
             variants={itemVariants}
           >
-            Professional, loving pet care services in Oshawa, Ajax, Bowmanville, and surrounding areas. Because your furry friends deserve the best attention while you're away.
+            Professional, loving pet care services in Toronto, North York, Scarborough, Markham, Richmond Hill, and surrounding areas. Because your furry friends deserve the best attention while you're away.
           </motion.p>
 
           <motion.div 
