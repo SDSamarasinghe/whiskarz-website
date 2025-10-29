@@ -141,7 +141,7 @@ const Testimonials = () => {
             What Pet Parents <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">Say</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Don't just take our word for it - hear from our happy clients across Oshawa, Ajax, Bowmanville & more
+            Don't just take our word for it - hear from our happy clients across Toronto, GTA & Durham Region
           </p>
         </motion.div>
 
