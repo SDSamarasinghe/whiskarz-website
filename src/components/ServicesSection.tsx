@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dog, Cat, Rabbit, Bird, PawPrint, ArrowRight, Sparkles } from "lucide-react";
+import { Dog, Cat, Rabbit, Bird, PawPrint, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import dogCare from "@/assets/dog-care.jpg";
@@ -118,7 +118,7 @@ const ServicesSection = () => {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center space-x-2 bg-gradient-to-r from-accent/20 to-primary/20 backdrop-blur-sm border-2 border-accent/30 text-primary px-6 py-3 rounded-full mb-8 shadow-lg"
           >
-            <Sparkles className="w-5 h-5 text-accent animate-pulse-soft" />
+            <PawPrint className="w-5 h-5 text-accent animate-pulse-soft" />
             <span className="text-sm font-bold">Premium Pet Care Services</span>
           </motion.div>
           
