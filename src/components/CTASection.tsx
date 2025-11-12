@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Heart, Star } from "lucide-react";
+import { ArrowRight, Heart, Star, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -84,7 +84,7 @@ const CTASection = () => {
               transition={{ duration: 0.6 }}
               className="inline-flex items-center space-x-2 bg-white/20 text-white px-4 py-2 rounded-full mb-8"
             >
-              <Sparkles className="w-4 h-4" />
+              <Star className="w-4 h-4" />
               <span className="text-sm font-medium">Limited Time Offer</span>
             </motion.div>
 
@@ -163,7 +163,7 @@ const CTASection = () => {
                 <span className="text-sm font-medium">500+ Happy Pets</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Sparkles className="w-5 h-5" />
+                <Award className="w-5 h-5" />
                 <span className="text-sm font-medium">Premium Service</span>
               </div>
             </motion.div>
