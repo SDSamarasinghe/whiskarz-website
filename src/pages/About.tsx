@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Shield, Heart, Users, Award, PawPrint, Sparkles, TrendingUp, Clock } from "lucide-react";
+import { Shield, Heart, Users, Award, PawPrint, TrendingUp, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 
