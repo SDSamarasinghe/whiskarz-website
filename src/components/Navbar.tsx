@@ -100,6 +100,28 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
+              <a 
+                href="https://app.whiskarz.com/login" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Button 
+                  size="sm" 
+                  variant="outline"
+                  className="ml-3 bg-transparent border-2 border-white/30 hover:bg-white/10 hover:border-white/50 text-white font-semibold px-6 py-2.5 rounded-xl transition-all duration-300"
+                >
+                  Sign In
+                </Button>
+              </a>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               <Link to="/contact">
                 <Button 
                   size="sm" 
@@ -180,6 +202,19 @@ const Navbar = () => {
                   transition={{ delay: 0.4 }}
                   className="pt-2"
                 >
+                  <a 
+                    href="https://app.whiskarz.com/login" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Button 
+                      variant="outline"
+                      className="w-full bg-transparent border-2 border-white/30 hover:bg-white/10 hover:border-white/50 text-white font-semibold rounded-xl py-3 mb-2"
+                    >
+                      Sign In
+                    </Button>
+                  </a>
                   <Link to="/contact" onClick={() => setIsOpen(false)}>
                     <Button className="w-full bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl py-3">
                      Book Now
