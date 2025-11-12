@@ -1,4 +1,4 @@
-import { Search, Calendar, Home, Heart, Check, ArrowRight, Sparkles } from "lucide-react";
+import { Search, Calendar, Home, Heart, Check, ArrowRight, Award } from "lucide-react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -92,7 +92,7 @@ const HowItWorks = () => {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center space-x-2 bg-gradient-to-r from-accent/20 to-primary/20 backdrop-blur-sm text-primary border-2 border-accent/30 px-5 py-2.5 rounded-full mb-6 shadow-lg"
           >
-            <Sparkles className="w-4 h-4 text-accent" />
+            <Heart className="w-4 h-4 text-accent" />
             <span className="text-sm font-semibold">Simple & Seamless Process</span>
           </motion.div>
           
@@ -271,7 +271,7 @@ const HowItWorks = () => {
               <div className="flex flex-wrap justify-center gap-6 mt-8">
                 {[
                   { label: "500+ Happy Clients", icon: Heart },
-                  { label: "4.9★ Rating", icon: Sparkles },
+                  { label: "4.9★ Rating", icon: Award },
                   { label: "Fully Insured", icon: Check }
                 ].map((badge, index) => {
                   const BadgeIcon = badge.icon;
