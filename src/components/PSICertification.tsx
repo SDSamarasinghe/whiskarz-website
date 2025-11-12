@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Award, CheckCircle2, Sparkles } from "lucide-react";
+import { Shield, Award, CheckCircle2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const PSICertification = () => {
@@ -198,7 +198,7 @@ const PSICertification = () => {
             >
               <div className="flex items-center space-x-4">
                 <div className="w-16 h-16 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
-                  <Sparkles className="w-8 h-8 text-white" />
+                  <Award className="w-8 h-8 text-white" />
                 </div>
                 <div>
                   <p className="font-bold text-foreground text-lg mb-1">Trusted by 500+ Families</p>
