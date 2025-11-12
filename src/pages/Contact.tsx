@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Mail, Phone, MapPin, Clock, Sparkles, Calendar, PawPrint, Loader2 } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Calendar, PawPrint, Loader2, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
@@ -101,7 +101,7 @@ const Contact = () => {
       toast({
         title: (
           <span className="text-gradient-hero font-bold text-lg flex items-center gap-2">
-            <Sparkles className="w-5 h-5 animate-float" /> Inquiry Sent!
+            <CheckCircle className="w-5 h-5 animate-float" /> Inquiry Sent!
           </span>
         ),
         description: (
@@ -164,7 +164,7 @@ const Contact = () => {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6"
             >
-              <Sparkles className="w-4 h-4" />
+              <Calendar className="w-4 h-4" />
               <span className="text-sm font-medium">Book Your Service</span>
             </motion.div>
 
