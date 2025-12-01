@@ -6,7 +6,7 @@ const mapContainerStyle = {
   height: "600px",
 };
 
-const defaultCenter = { lat: 43.8971, lng: -78.8658 };
+const defaultCenter = { lat: 43.7615, lng: -79.4111 }; // North York center
 
 export interface ServiceLocation {
   name: string;
@@ -50,7 +50,14 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({ locations, selectedLoca
         zoomControl: true,
         mapTypeControl: false,
         streetViewControl: false,
-        fullscreenControl: false,
+        fullscreenControl: true,
+        styles: [
+          {
+            featureType: "poi",
+            elementType: "labels",
+            stylers: [{ visibility: "off" }]
+          }
+        ]
       }}
     >
       {locations.map((loc, idx) => (
@@ -58,10 +65,22 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({ locations, selectedLoca
           key={loc.name}
           position={{ lat: loc.lat, lng: loc.lng }}
           icon={{
-            url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
-            scaledSize: new window.google.maps.Size(40, 40),
+            path: window.google.maps.SymbolPath.CIRCLE,
+            scale: 10,
+            fillColor: "#3b82f6", // Primary color - will be visible in both themes
+            fillOpacity: 1,
+            strokeColor: "#ffffff",
+            strokeWeight: 3,
+          }}
+          label={{
+            text: loc.name,
+            color: "#000000",
+            fontSize: "12px",
+            fontWeight: "bold",
+            className: "map-marker-label"
           }}
           onClick={() => onMarkerClick?.(loc)}
+          animation={selectedLocation?.name === loc.name ? window.google.maps.Animation.BOUNCE : undefined}
         />
       ))}
     </GoogleMap>

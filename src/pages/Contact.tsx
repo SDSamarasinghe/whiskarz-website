@@ -18,6 +18,20 @@ import Holidays from 'date-holidays';
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
   
+  // Get today's date in YYYY-MM-DD format for date input min
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  };
+  
+  // Get current time in HH:MM format for time input min
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+  };
+  
   // Initialize Canadian holidays library
   const hd = useMemo(() => new Holidays('CA', 'ON'), []); // Canada, Ontario
   
@@ -365,8 +379,8 @@ const Contact = () => {
               <Card className="hover-lift border-2 hover:border-primary/30 transition-all duration-300">
                 <CardContent className="pt-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                      <Phone className="w-6 h-6 text-white" />
+                    <div className="w-14 h-14 flex items-center justify-center flex-shrink-0">
+                      <img src="/call.png" alt="Phone" className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Phone</h3>
@@ -380,8 +394,8 @@ const Contact = () => {
               <Card className="hover-lift border-2 hover:border-primary/30 transition-all duration-300">
                 <CardContent className="pt-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                      <Mail className="w-6 h-6 text-white" />
+                    <div className="w-14 h-14 flex items-center justify-center flex-shrink-0">
+                      <img src="/health.png" alt="Email" className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Email</h3>
@@ -395,8 +409,8 @@ const Contact = () => {
               <Card className="hover-lift border-2 hover:border-primary/30 transition-all duration-300">
                 <CardContent className="pt-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                      <MapPin className="w-6 h-6 text-white" />
+                    <div className="w-14 h-14 flex items-center justify-center flex-shrink-0">
+                      <img src="/location.png" alt="Location" className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Location</h3>
@@ -411,8 +425,8 @@ const Contact = () => {
               <Card className="hover-lift border-2 hover:border-primary/30 transition-all duration-300">
                 <CardContent className="pt-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                      <Clock className="w-6 h-6 text-white" />
+                    <div className="w-14 h-14 flex items-center justify-center flex-shrink-0">
+                      <img src="/animal.png" alt="Hours" className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Hours</h3>
@@ -434,8 +448,8 @@ const Contact = () => {
               <Card className="border-2 hover:border-primary/30 transition-all duration-300 shadow-card">
                 <CardHeader className="border-b bg-gradient-to-r from-primary/5 to-accent/5">
                   <div className="flex items-center space-x-3 mb-2">
-                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-                      <Calendar className="w-5 h-5 text-white" />
+                    <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
+                      <img src="/pets-calander.png" alt="Calendar" className="w-full h-full object-contain" />
                     </div>
                     <CardTitle className="text-2xl">Pet Service Inquiry</CardTitle>
                   </div>
@@ -629,6 +643,7 @@ const Contact = () => {
                             required
                             className="border-2 focus:border-primary"
                             placeholder="Select Date from drop down"
+                            min={getTodayDate()}
                           />
                         </div>
                         <div className="space-y-2">
@@ -642,6 +657,7 @@ const Contact = () => {
                             required
                             className="border-2 focus:border-primary"
                             placeholder="Select Date from drop down"
+                            min={getTodayDate()}
                           />
                         </div>
                       </div>
@@ -657,6 +673,7 @@ const Contact = () => {
                             onChange={handleInputChange}
                             required
                             className="border-2 focus:border-primary"
+                            min={getCurrentTime()}
                           />
                         </div>
                         <div className="space-y-2">
@@ -669,6 +686,7 @@ const Contact = () => {
                             onChange={handleInputChange}
                             required
                             className="border-2 focus:border-primary"
+                            min={getCurrentTime()}
                           />
                         </div>
                       </div>
