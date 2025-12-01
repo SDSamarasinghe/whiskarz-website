@@ -60,7 +60,7 @@ const PricingSection = () => {
                 <Card className="border-2 shadow-lg overflow-hidden bg-card">
                   <CardContent className="p-0">
                     {/* Google Maps Integration */}
-                    <div className="relative w-full" style={{ height: '600px' }}>
+                    <div className="relative w-full h-64 sm:h-80 md:h-[500px] lg:h-[600px]">
                       <InteractiveMap 
                         locations={serviceLocations}
                         selectedLocation={selectedLocation}
@@ -68,12 +68,12 @@ const PricingSection = () => {
                       />
 
                       {/* Overlay Legend */}
-                      <div className="absolute top-4 left-4 bg-card/95 backdrop-blur-sm rounded-xl shadow-lg border-2 border-primary/20 p-4 z-10 max-w-xs">
+                      <div className="absolute top-3 left-3 bg-card/95 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border-2 border-primary/20 p-3 sm:p-4 z-10 w-56 sm:w-64">
                         <h4 className="font-bold text-base text-foreground mb-3 flex items-center space-x-2">
                           <MapPin className="w-5 h-5 text-primary" />
                           <span>Our Service Areas</span>
                         </h4>
-                        <div className="space-y-2 max-h-96 overflow-y-auto pr-2">
+                        <div className="space-y-2 max-h-40 sm:max-h-64 md:max-h-96 overflow-y-auto pr-2">
                           {serviceLocations.map((location, index) => (
                             <motion.div
                               key={location.name}
@@ -102,22 +102,22 @@ const PricingSection = () => {
                       </div>
 
                       {/* Service Info Badge */}
-                      <div className="absolute top-4 right-4 bg-primary text-primary-foreground rounded-xl shadow-lg p-4 z-10 max-w-xs">
-                        <div className="flex items-start space-x-3">
-                          <div className="w-10 h-10 bg-primary-foreground/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <MapPin className="w-6 h-6" />
+                      <div className="absolute top-3 right-3 bg-primary text-primary-foreground rounded-lg sm:rounded-xl shadow-lg p-3 sm:p-4 z-10">
+                        <div className="flex items-start space-x-2 sm:space-x-3">
+                          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary-foreground/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />
                           </div>
                           <div>
-                            <p className="font-bold text-sm mb-1">Serving 14 Locations</p>
-                            <p className="text-xs opacity-90">GTA & Durham Region</p>
+                            <p className="font-bold text-xs sm:text-sm mb-0.5">Serving 14 Locations</p>
+                            <p className="text-[10px] sm:text-xs opacity-90">GTA & Durham Region</p>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     {/* Location Grid Below Map */}
-                    <div className="bg-muted/50 p-8 border-t">
-                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
+                    <div className="bg-muted/50 p-4 sm:p-6 md:p-8 border-t">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4">
                         {serviceLocations.map((location, index) => (
                           <motion.div
                             key={location.name}
@@ -131,19 +131,19 @@ const PricingSection = () => {
                               hoveredLocation === location.name 
                                 ? 'border-primary shadow-md' 
                                 : 'border-border hover:border-primary/50'
-                            } rounded-lg p-4 text-center transition-all duration-300 cursor-pointer`}
+                            } rounded-lg p-3 sm:p-4 text-center transition-all duration-300 cursor-pointer`}
                           >
-                            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center mx-auto mb-2 shadow-sm">
-                              <MapPin className="w-4 h-4 text-primary-foreground" />
+                            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-primary rounded-full flex items-center justify-center mx-auto mb-2 shadow-sm">
+                              <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary-foreground" />
                             </div>
-                            <p className="font-semibold text-foreground text-sm">{location.name}</p>
-                            <p className="text-xs text-primary mt-1">Available</p>
+                            <p className="font-semibold text-foreground text-xs sm:text-sm">{location.name}</p>
+                            <p className="text-[11px] sm:text-xs text-primary mt-1">Available</p>
                           </motion.div>
                         ))}
                       </div>
 
-                      <div className="mt-8 text-center">
-                        <p className="text-sm text-muted-foreground">
+                      <div className="mt-6 sm:mt-8 text-center">
+                        <p className="text-xs sm:text-sm text-muted-foreground">
                           Don't see your area? <a href="/contact" className="text-primary font-semibold hover:underline">Contact us</a> - we may still be able to help!
                         </p>
                       </div>
