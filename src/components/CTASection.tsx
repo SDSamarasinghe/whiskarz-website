@@ -2,68 +2,37 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Heart, Star, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import Lottie from "lottie-react";
+import { useEffect, useState } from "react";
 
 const CTASection = () => {
+  const [animationData, setAnimationData] = useState(null);
+
+  useEffect(() => {
+    fetch('/pet-heart.json')
+      .then(response => response.json())
+      .then(data => setAnimationData(data))
+      .catch(error => console.error('Error loading animation:', error));
+  }, []);
+
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-secondary animate-gradient opacity-90" />
       
-      {/* Decorative Elements */}
-      <motion.div
-        animate={{
-          y: [0, -20, 0],
-          rotate: [0, 5, 0],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"
-      />
-      <motion.div
-        animate={{
-          y: [0, 20, 0],
-          rotate: [0, -5, 0],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute bottom-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-xl"
-      />
+      {/* Lottie Animation - Left Side */}
+      {animationData && (
+        <div className="absolute left-4 sm:left-10 top-1/2 -translate-y-1/2 w-20 h-20 sm:w-32 sm:h-32 md:w-48 md:h-48 opacity-30">
+          <Lottie animationData={animationData} loop={true} />
+        </div>
+      )}
       
-      {/* Floating Icons */}
-      <motion.div
-        animate={{
-          y: [0, -15, 0],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-20 right-1/4 opacity-20"
-      >
-        <Heart className="w-16 h-16 text-white" />
-      </motion.div>
-      
-      <motion.div
-        animate={{
-          y: [0, 15, 0],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-        className="absolute bottom-20 left-1/4 opacity-20"
-      >
-        <Star className="w-12 h-12 text-white" />
-      </motion.div>
+      {/* Lottie Animation - Right Side */}
+      {animationData && (
+        <div className="absolute right-4 sm:right-10 top-1/2 -translate-y-1/2 w-20 h-20 sm:w-32 sm:h-32 md:w-48 md:h-48 opacity-30">
+          <Lottie animationData={animationData} loop={true} />
+        </div>
+      )}
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -71,29 +40,18 @@ const CTASection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative rounded-3xl p-12 md:p-20 text-center overflow-hidden"
+          className="relative rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center overflow-hidden"
         >
           {/* Glassmorphism overlay */}
           <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
           
           <div className="relative z-10">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center space-x-2 bg-white/20 text-white px-4 py-2 rounded-full mb-8"
-            >
-              <Star className="w-4 h-4" />
-              <span className="text-sm font-medium">Limited Time Offer</span>
-            </motion.div>
-
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight"
+              className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
             >
               Ready to Book a Sitter?
             </motion.h2>
