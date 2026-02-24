@@ -117,7 +117,7 @@ const About = () => {
             >
               <div className="relative rounded-2xl overflow-hidden border shadow-lg">
                 <img
-                  src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=800&auto=format&fit=crop&q=80"
+                  src="https://images.unsplash.com/photo-1560743641-3914f2c45636?w=800&auto=format&fit=crop&q=80"
                   alt="Pet care team"
                   className="w-full h-[500px] object-cover"
                 />
