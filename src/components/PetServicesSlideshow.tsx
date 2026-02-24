@@ -1,12 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { GiSittingDog, GiCat, GiRabbit, GiBirdHouse, GiRat } from 'react-icons/gi';
-import { motion } from 'framer-motion';
-import dogCare from '@/assets/dog-care.jpg';
-import catCare from '@/assets/cat-care.jpg';
-import smallPets from '@/assets/small-pets.jpg';
-import birdsPets from '@/assets/bird-pets.jpg';
-import pocketPet from '@/assets/pocket-pet.jpg';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const services = [
   {
@@ -14,7 +9,7 @@ const services = [
     title: 'Dog Sitting',
     description:
       'Daily walks, playtime, feeding, and lots of love for your canine companion. We specialize in building trust and creating memorable moments.',
-    image: dogCare,
+    image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&auto=format&fit=crop&q=80',
     features: ['Daily Walks', 'Playtime', 'Feeding', 'Cuddles'],
   },
   {
@@ -22,15 +17,15 @@ const services = [
     title: 'Cat Sitting',
     description:
       'Litter box care, feeding, playtime, and cozy cuddles for your feline friend. We understand their unique personality and needs.',
-    image: catCare,
+    image: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&auto=format&fit=crop&q=80',
     features: ['Litter Care', 'Feeding', 'Playtime', 'Companionship'],
   },
   {
     icon: GiRabbit,
-    title: 'Small Pet Care',
+    title: 'Rabbit Care',
     description:
       'Specialized care for rabbits, hamsters, guinea pigs, and more. Proper handling, nutrition, and enrichment activities included.',
-    image: smallPets,
+    image: 'https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=800&auto=format&fit=crop&q=80',
     features: ['Feeding', 'Habitat Care', 'Handling', 'Enrichment'],
   },
   {
@@ -38,7 +33,7 @@ const services = [
     title: 'Bird Sitting',
     description:
       'Cage cleaning, feeding, and gentle interaction for your feathered friends. We ensure their songs continue to brighten your home.',
-    image: birdsPets,
+    image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=800&auto=format&fit=crop&q=80',
     features: ['Cage Cleaning', 'Feeding', 'Interaction', 'Monitoring'],
   },
   {
@@ -46,21 +41,39 @@ const services = [
     title: 'Pocket Pets',
     description:
       'Expert care for ferrets, mice, rats, and other pocket-sized companions. Tailored care for each species specific requirements.',
-    image: pocketPet,
+    image: 'https://images.unsplash.com/photo-1452857297128-d9c29adba80b?w=800&auto=format&fit=crop&q=80',
     features: ['Housing Care', 'Feeding', 'Socialization', 'Health Check'],
   },
 ];
 
+const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 80 : -80,
+    opacity: 0,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction: number) => ({
+    x: direction > 0 ? -80 : 80,
+    opacity: 0,
+  }),
+};
+
 const PetServicesSlideshow = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [direction, setDirection] = useState<'next' | 'prev'>('next');
+  const [direction, setDirection] = useState(1);
+
+  const prevIndex = (currentIndex - 1 + services.length) % services.length;
+  const nextIndex = (currentIndex + 1) % services.length;
 
   useEffect(() => {
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
-      setDirection('next');
+      setDirection(1);
       setCurrentIndex((prev) => (prev + 1) % services.length);
     }, 6000);
 
@@ -68,24 +81,25 @@ const PetServicesSlideshow = () => {
   }, [isAutoPlaying]);
 
   const goToSlide = (index: number) => {
-    setDirection(index > currentIndex ? 'next' : 'prev');
+    if (index === currentIndex) return;
+    const isMovingForward =
+      index > currentIndex || (currentIndex === services.length - 1 && index === 0);
+    setDirection(isMovingForward ? 1 : -1);
     setCurrentIndex(index);
   };
 
   const nextSlide = () => {
-    setDirection('next');
+    setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % services.length);
-    setIsAutoPlaying(false);
   };
 
   const prevSlide = () => {
-    setDirection('prev');
+    setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + services.length) % services.length);
-    setIsAutoPlaying(false);
   };
 
   const currentService = services[currentIndex];
-  const CurrentIcon = currentService.icon;
+  const ServiceIcon = currentService.icon;
 
   return (
     <section
@@ -93,6 +107,8 @@ const PetServicesSlideshow = () => {
       className="relative py-24 bg-background overflow-hidden"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
+      onFocusCapture={() => setIsAutoPlaying(false)}
+      onBlurCapture={() => setIsAutoPlaying(true)}
     >
       {/* Section Header */}
       <motion.div
@@ -112,168 +128,130 @@ const PetServicesSlideshow = () => {
       </motion.div>
 
       {/* Slider Container */}
-      <div className="relative max-w-7xl mx-auto px-16 md:px-20 mb-8">
-        <div className="relative h-[520px] md:h-[450px] lg:h-[420px] flex items-center justify-center overflow-visible">
-          {/* Slides */}
-          {services.map((service, index) => {
-            const isActive = index === currentIndex;
-            const isPrev =
-              index === (currentIndex - 1 + services.length) % services.length;
-            const isNext = index === (currentIndex + 1) % services.length;
+      <div className="relative max-w-7xl mx-auto px-4 md:px-8 lg:px-10 mb-8">
+        <div className="flex items-center justify-center gap-4 lg:gap-6">
+          <button
+            type="button"
+            onClick={prevSlide}
+            className="hidden md:block w-[24%] lg:w-[22%] text-left"
+            aria-label={`View previous service: ${services[prevIndex].title}`}
+          >
+            <div className="overflow-hidden rounded-2xl border border-border bg-card/80 opacity-70 hover:opacity-90 transition-opacity">
+              <div className="relative h-[220px] lg:h-[260px]">
+                <img
+                  src={services[prevIndex].image}
+                  alt={services[prevIndex].title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                <p className="absolute bottom-3 left-3 right-3 text-sm md:text-base font-semibold text-white truncate">
+                  {services[prevIndex].title}
+                </p>
+              </div>
+            </div>
+          </button>
 
-            // Hide slides that aren't prev, active, or next
-            if (!isActive && !isPrev && !isNext) {
-              return null;
-            }
-
-            let positionClass = '';
-            let opacityClass = '';
-            let scaleClass = '';
-            let zIndexClass = '';
-            let widthClass = '';
-
-            if (isActive) {
-              positionClass = 'translate-x-0';
-              opacityClass = 'opacity-100';
-              scaleClass = 'scale-100';
-              zIndexClass = 'z-30';
-              widthClass = 'w-full max-w-3xl';
-            } else if (isPrev) {
-              positionClass = '-translate-x-[75%] md:-translate-x-[70%]';
-              opacityClass = 'opacity-60';
-              scaleClass = 'scale-90';
-              zIndexClass = 'z-10';
-              widthClass = 'w-full max-w-3xl';
-            } else if (isNext) {
-              positionClass = 'translate-x-[75%] md:translate-x-[70%]';
-              opacityClass = 'opacity-60';
-              scaleClass = 'scale-90';
-              zIndexClass = 'z-10';
-              widthClass = 'w-full max-w-3xl';
-            }
-
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ 
-                  opacity: isActive ? 1 : 0.4,
-                  scale: isActive ? 1 : 0.9,
-                  x: isActive ? 0 : isPrev ? '-100%' : '100%'
-                }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-                className={`absolute ${positionClass} ${opacityClass} ${scaleClass} ${zIndexClass} transition-all duration-700 ease-in-out ${widthClass}`}
-                style={{ 
-                  pointerEvents: isActive ? 'auto' : 'none',
-                }}
+          <div className="w-full md:w-[52%] lg:w-[56%] relative overflow-hidden rounded-3xl border border-border bg-card shadow-xl">
+            <AnimatePresence initial={false} custom={direction} mode="wait">
+              <motion.article
+                key={currentIndex}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.45, ease: 'easeInOut' }}
+                className="grid md:grid-cols-2 min-h-[540px] md:min-h-[440px]"
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${currentIndex + 1} of ${services.length}: ${currentService.title}`}
               >
-                <div className="h-full flex items-center justify-center px-2 md:px-4">
-                  <motion.div
-                    whileHover={isActive ? { y: -4, scale: 1.02 } : {}}
-                    transition={{ duration: 0.3 }}
-                    className="w-full bg-card rounded-2xl shadow-xl border border-border overflow-hidden h-[480px] md:h-[420px] lg:h-[400px]"
-                  >
-                    <div className="grid md:grid-cols-2 gap-0 h-full">
-                      {/* Left Side - Content */}
-                      <div className="p-6 md:p-8 lg:p-10 flex flex-col justify-center bg-card h-full overflow-y-auto">
-                        <motion.div
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={isActive ? { opacity: 1, x: 0 } : { opacity: 0.6, x: -10 }}
-                          transition={{ duration: 0.5, delay: isActive ? 0.2 : 0 }}
-                          className="mb-5 flex items-center gap-3"
-                        >
-                          <motion.div
-                            whileHover={isActive ? { rotate: 360 } : {}}
-                            transition={{ duration: 0.6 }}
-                            className="w-12 h-12 md:w-14 md:h-14 bg-primary/10 rounded-xl flex items-center justify-center border border-primary/20 flex-shrink-0"
-                          >
-                            <service.icon className="w-6 h-6 md:w-7 md:h-7 text-primary" />
-                          </motion.div>
-                          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground leading-tight">
-                            {service.title}
-                          </h3>
-                        </motion.div>
-
-                        <motion.p
-                          initial={{ opacity: 0 }}
-                          animate={isActive ? { opacity: 1 } : { opacity: 0.5 }}
-                          transition={{ duration: 0.5, delay: isActive ? 0.3 : 0 }}
-                          className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed mb-5"
-                        >
-                          {service.description}
-                        </motion.p>
-
-                        {/* Features */}
-                        {isActive && (
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.5, delay: 0.4 }}
-                            className="flex flex-wrap gap-2 mb-5"
-                          >
-                            {service.features.map((feature, i) => (
-                              <motion.span
-                                key={i}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.3, delay: 0.5 + i * 0.08 }}
-                                whileHover={{ scale: 1.05 }}
-                                className="text-xs md:text-sm font-medium text-foreground bg-muted px-3 py-1.5 rounded-lg border border-border"
-                              >
-                                {feature}
-                              </motion.span>
-                            ))}
-                          </motion.div>
-                        )}
-
-                        {isActive && (
-                          <motion.button
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.5, delay: 0.6 }}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold shadow-sm transition-all w-fit text-sm md:text-base"
-                          >
-                            Learn More
-                          </motion.button>
-                        )}
-                      </div>
-
-                      {/* Right Side - Visual */}
-                      <div className="relative flex items-center justify-center overflow-hidden h-full min-h-[200px] md:min-h-[280px]">
-                        <motion.img
-                          whileHover={isActive ? { scale: 1.05 } : {}}
-                          transition={{ duration: 0.5 }}
-                          src={service.image}
-                          alt={service.title}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className={`absolute inset-0 bg-gradient-to-t ${isActive ? 'from-black/40' : 'from-black/50'} via-black/10 to-transparent transition-all duration-500`}></div>
-                      </div>
+                <div className="p-6 md:p-8 lg:p-10 flex flex-col justify-center">
+                  <div className="mb-5 flex items-center gap-3">
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-primary/10 rounded-xl flex items-center justify-center border border-primary/20 flex-shrink-0">
+                      <ServiceIcon className="w-6 h-6 md:w-7 md:h-7 text-primary" />
                     </div>
-                  </motion.div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
+                      {currentService.title}
+                    </h3>
+                  </div>
+
+                  <p className="text-sm md:text-base lg:text-lg text-muted-foreground leading-relaxed mb-6">
+                    {currentService.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-7">
+                    {currentService.features.map((feature) => (
+                      <span
+                        key={feature}
+                        className="text-xs md:text-sm font-medium text-foreground bg-muted px-3 py-1.5 rounded-lg border border-border"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+
+                  <button
+                    type="button"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold shadow-sm transition-colors w-fit text-sm md:text-base"
+                  >
+                    Learn More
+                  </button>
                 </div>
-              </motion.div>
-            );
-          })}
+
+                <div className="relative min-h-[230px] md:min-h-full overflow-hidden">
+                  <motion.img
+                    key={currentService.image}
+                    initial={{ scale: 1.08 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                    src={currentService.image}
+                    alt={currentService.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
+                </div>
+              </motion.article>
+            </AnimatePresence>
+          </div>
+
+          <button
+            type="button"
+            onClick={nextSlide}
+            className="hidden md:block w-[24%] lg:w-[22%] text-left"
+            aria-label={`View next service: ${services[nextIndex].title}`}
+          >
+            <div className="overflow-hidden rounded-2xl border border-border bg-card/80 opacity-70 hover:opacity-90 transition-opacity">
+              <div className="relative h-[220px] lg:h-[260px]">
+                <img
+                  src={services[nextIndex].image}
+                  alt={services[nextIndex].title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                <p className="absolute bottom-3 left-3 right-3 text-sm md:text-base font-semibold text-white truncate">
+                  {services[nextIndex].title}
+                </p>
+              </div>
+            </div>
+          </button>
         </div>
 
         {/* Navigation Arrows */}
         <motion.button
-          whileHover={{ scale: 1.1, x: -4 }}
+          whileHover={{ scale: 1.06, x: -3 }}
           whileTap={{ scale: 0.95 }}
           onClick={prevSlide}
-          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 bg-card/95 backdrop-blur-sm rounded-full shadow-xl border border-border flex items-center justify-center hover:bg-primary hover:border-primary transition-all group"
+          className="absolute left-2 md:left-[24%] lg:left-[21%] top-1/2 -translate-y-1/2 z-40 w-11 h-11 md:w-12 md:h-12 bg-card/95 backdrop-blur-sm rounded-full shadow-lg border border-border flex items-center justify-center hover:bg-primary hover:border-primary transition-colors group"
           aria-label="Previous service"
         >
           <ChevronLeft className="w-6 h-6 text-foreground group-hover:text-primary-foreground transition-colors" />
         </motion.button>
         <motion.button
-          whileHover={{ scale: 1.1, x: 4 }}
+          whileHover={{ scale: 1.06, x: 3 }}
           whileTap={{ scale: 0.95 }}
           onClick={nextSlide}
-          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 bg-card/95 backdrop-blur-sm rounded-full shadow-xl border border-border flex items-center justify-center hover:bg-primary hover:border-primary transition-all group"
+          className="absolute right-2 md:right-[24%] lg:right-[21%] top-1/2 -translate-y-1/2 z-40 w-11 h-11 md:w-12 md:h-12 bg-card/95 backdrop-blur-sm rounded-full shadow-lg border border-border flex items-center justify-center hover:bg-primary hover:border-primary transition-colors group"
           aria-label="Next service"
         >
           <ChevronRight className="w-6 h-6 text-foreground group-hover:text-primary-foreground transition-colors" />
@@ -281,18 +259,21 @@ const PetServicesSlideshow = () => {
       </div>
 
       {/* Pagination Dots */}
-      <div className="flex justify-center gap-3 relative z-10">
+      <div className="flex justify-center gap-3 relative z-10" role="tablist" aria-label="Select pet service slide">
         {services.map((_, index) => (
           <motion.button
             key={index}
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => goToSlide(index)}
+            type="button"
             className={`transition-all duration-300 rounded-full ${
               index === currentIndex
                 ? 'w-10 h-2.5 bg-primary'
                 : 'w-2.5 h-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/60'
             }`}
+            aria-selected={index === currentIndex}
+            role="tab"
             aria-label={`Go to service ${index + 1}`}
           />
         ))}
