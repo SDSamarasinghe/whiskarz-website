@@ -37,7 +37,7 @@ const serviceDetails = [
       "Medication if needed",
       "Plant watering included",
     ],
-    image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800&auto=format&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&auto=format&fit=crop&q=80",
     color: "secondary",
     stats: { experience: "5+ years", rating: "4.9", clients: "400+" },
   },
@@ -69,7 +69,7 @@ const serviceDetails = [
       "Safe out-of-cage time",
       "Enrichment activities",
     ],
-    image: "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=800&auto=format&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=800&auto=format&fit=crop&q=80",
     color: "primary",
     stats: { experience: "4+ years", rating: "4.9", clients: "150+" },
   },
@@ -85,7 +85,7 @@ const serviceDetails = [
       "Health monitoring",
       "Exercise & playtime",
     ],
-    image: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=800&auto=format&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1452857297128-d9c29adba80b?w=800&auto=format&fit=crop&q=80",
     color: "secondary",
     stats: { experience: "3+ years", rating: "4.8", clients: "100+" },
   },
@@ -145,39 +145,36 @@ const Services = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card className="group relative overflow-hidden border-2 hover:border-primary/50 transition-all duration-500 h-full bg-card shadow-sm hover:shadow-lg">
-                    {/* Animated Icon Background */}
-                    <motion.div
-                      className="absolute top-0 right-0 w-64 h-64 opacity-5"
-                      animate={isHovered ? { rotate: 360, scale: 1.1 } : { rotate: 0, scale: 1 }}
-                      transition={{ duration: 20, repeat: isHovered ? Infinity : 0, ease: "linear" }}
-                    >
-                      <Icon className="w-full h-full text-primary" />
-                    </motion.div>
+                    {/* Service Image */}
+                    <div className="relative h-56 overflow-hidden">
+                      <motion.img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover"
+                        animate={isHovered ? { scale: 1.05 } : { scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                      
+                      {/* Icon Badge on Image */}
+                      <motion.div
+                        animate={isHovered ? { scale: 1.1, rotate: [0, -10, 10, 0] } : { scale: 1, rotate: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="absolute bottom-4 left-4 w-14 h-14 rounded-xl bg-primary flex items-center justify-center shadow-lg"
+                      >
+                        <Icon className="w-8 h-8 text-primary-foreground" />
+                      </motion.div>
+                      
+                      {/* Rating Badge */}
+                      <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center space-x-1 shadow-md">
+                        <Star className="w-4 h-4 text-primary fill-primary" />
+                        <span className="text-sm font-bold text-primary">{service.stats.rating}</span>
+                      </div>
+                    </div>
 
                     {/* Content */}
                     <div className="relative z-10">
                       <CardHeader className="pb-4">
-                        <div className="flex items-start justify-between mb-4">
-                          {/* Animated Icon */}
-                          <motion.div
-                            animate={isHovered ? { scale: 1.1, rotate: [0, -10, 10, 0] } : { scale: 1, rotate: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="w-20 h-20 rounded-2xl bg-primary flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
-                          >
-                            <Icon className="w-12 h-12 text-primary-foreground" />
-                          </motion.div>
-                          
-                          {/* Stats Badge */}
-                          <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : 20 }}
-                            className="bg-primary/10 px-3 py-1.5 rounded-full flex items-center space-x-1"
-                          >
-                            <Star className="w-4 h-4 text-primary fill-primary" />
-                            <span className="text-sm font-bold text-primary">{service.stats.rating}</span>
-                          </motion.div>
-                        </div>
-                        
                         <CardTitle className="text-2xl font-bold text-foreground mb-2">
                           {service.title}
                         </CardTitle>
