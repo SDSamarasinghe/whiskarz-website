@@ -5,7 +5,7 @@ interface ProcessStepData {
   id: number;
   number: string;
   title: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<{ className?: string }>;
   description: string;
   side: "left" | "right";
 }
