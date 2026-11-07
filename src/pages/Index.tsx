@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import PetServicesSlideshow from "@/components/PetServicesSlideshow";
@@ -22,6 +23,11 @@ const Index = () => {
       {/* <CTASection /> */}
       <Footer />
       <FloatingCTA />
+      <SEO
+          title="Pet Sitters in Toronto & GTA | Whiskarz Premium Pet Care"
+          description="Looking for trusted pet sitters in Toronto and the GTA? Whiskarz offers loving in-home pet sitting, dog walking and care for cats, rabbits, birds and small pets."
+          path="/"
+      />
     </div>
   );
 };
