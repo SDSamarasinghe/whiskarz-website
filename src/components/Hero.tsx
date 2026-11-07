@@ -18,8 +18,8 @@ const Hero = () => {
         <div className="max-w-5xl mx-auto text-center space-y-4 sm:space-y-6 md:space-y-8 mt-6 sm:mt-8 md:mt-12 relative px-2 sm:px-4">
           <h1 className="font-bold leading-[1.15] sm:leading-[1.1] tracking-tight text-3xl sm:text-4xl md:text-6xl lg:text-7xl animate-fade-in-up">
             <span className="block text-primary mb-1 sm:mb-2">WHISKARZ</span>
-            <span className="block text-foreground text-2xl sm:text-3xl md:text-5xl lg:text-6xl mb-1 sm:mb-2">Your Pet's</span>
-            <span className="block bg-gradient-to-r from-accent via-accent to-primary bg-clip-text text-transparent">Home Away From Home</span>
+            <span className="block text-foreground text-2xl sm:text-3xl md:text-5xl lg:text-6xl mb-1 sm:mb-2">Pet Sitters in Toronto &amp; GTA</span>
+            <span className="block bg-gradient-to-r from-accent via-accent to-primary bg-clip-text text-transparent">Loving Care in Your Home</span>
           </h1>
 
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in px-2 sm:px-4 leading-relaxed">
