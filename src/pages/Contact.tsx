@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
@@ -331,6 +332,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Book Pet Sitting in Toronto & GTA | Whiskarz"
+        description="Need pet sitting near you? Contact Whiskarz for in-home pet care and dog walking across Toronto and the GTA. Submit your pet-care service inquiry today."
+        path="/contact"
+      />
       <Navbar />
       
       {/* Hero Section */}
