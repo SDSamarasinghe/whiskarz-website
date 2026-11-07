@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Shield, Heart, Users, Award, PawPrint, TrendingUp, Clock } from "lucide-react";
@@ -31,6 +32,11 @@ const values = [
 const About = () => {
   return (
     <div className="min-h-screen">
+      <SEO
+          title="Pet Sitting & Dog Walking Toronto & GTA | Whiskarz"
+          description="Explore in-home pet sitting, dog walking, cat sitting, rabbit care, bird sitting and small pet care across Toronto and the GTA. Contact Whiskarz today."
+          path="/services"
+      />
       <Navbar />
       
       {/* Hero Section */}
