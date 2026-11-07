@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -96,8 +97,13 @@ const Services = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Pet Sitting & Dog Walking Toronto & GTA | Whiskarz"
+        description="Explore in-home pet sitting, dog walking, cat sitting, rabbit care, bird sitting and small pet care across Toronto and the GTA. Contact Whiskarz today."
+        path="/services"
+      />
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-muted/30 via-background to-background relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -116,12 +122,19 @@ const Services = () => {
               <GiDogHouse className="w-4 h-4" />
               <span className="text-sm font-semibold">Premium Pet Care</span>
             </motion.div>
+            
             <h1 className="text-5xl md:text-6xl font-heading font-bold text-foreground mb-6">
-              Our <span className="text-primary">Pet Care Services</span>
-            </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Professional, personalized care for every type of pet. All our sitters are experienced, insured, and passionate about animals.
-            </p>
+              Pet Sitting &amp; Home Visit Services{" "}
+              <span className="text-primary">
+                in Toronto &amp; GTA
+              </span>
+             </h1>
+
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                  Whiskarz offers personalized pet sitting, dog walking,
+                  cat sitting, rabbit care, bird sitting and small pet
+                  care across Toronto and the GTA.
+              </p>
           </motion.div>
         </div>
       </section>
